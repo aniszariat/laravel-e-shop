@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $result  = DB::table('categories')->get();
+    // dd($result);
+    return view('welcome', ['categories' => $result]);
 });
-Route::get('/prodcuts', function () {
-    return view('prodcuts');
+Route::get('/products', function () {
+    $result = DB::table('products')->get();
+    return view('products', ["products" => $result]);
 });
 Route::get('/categories', function () {
     return view('categories');
